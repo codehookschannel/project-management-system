@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <property name="LOGS" value="./logs"></property>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %black(%d{ISO8601}) %highlight(%-5level) %blue(%t) %yellow(%C{1.}): %msg%n%throwable
+            </pattern>
+        </layout>
+    </appender>
+
+    <apeender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <file>${LOGS}/pms-api.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %d %p %C{1.} [%t] %m%n
+            </pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/archived/pms-api-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggerringPolcy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                   <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggerringPolcy>
+        </rollingPolicy>
+    </apeender>
+
+    <root level="info">
+        <appender-ref ref="RollingFile"></appender-ref>
+        <appender-ref ref="Console"></appender-ref>
+    </root>
+
+    <root name="io.codehooks" level="trace">
+        <appender-ref ref="RollingFile"></appender-ref>
+        <appender-ref ref="Console"></appender-ref>
+    </root>
+
+</configuration>
