@@ -10,11 +10,11 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "Spring")
 public interface UserAccountMapper {
 
-    public UserAccountDto fromUserAccount(UserAccount userAccount);
+    UserAccountDto fromUserAccount(UserAccount userAccount);
 
     @InheritInverseConfiguration(name = "fromUserAccount")
-    public UserAccount fromUserAccountDto(UserAccountDto userAccount);
+    UserAccount fromUserAccountDto(UserAccountDto userAccount);
 
     @InheritInverseConfiguration(name = "fromUserAccount")
-    public UserAccount updateUserAccount(UserAccountDto dto, @MappingTarget UserAccount userAccount);
+    UserAccount updateUserAccount(UserAccountDto dto, @MappingTarget UserAccount userAccount);
 }

@@ -9,7 +9,7 @@ import org.mapstruct.Mapper;
 public interface EmployeeMapper {
 
 
-    public EmployeeDto fromEmployee(Employee employee);
+    EmployeeDto fromEmployee(Employee employee);
 
-    public Employee fromEmployeeDto(EmployeeDto dto);
+    Employee fromEmployeeDto(EmployeeDto dto);
 }
